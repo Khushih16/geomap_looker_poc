@@ -26,11 +26,7 @@ persist_with: looker_geo_map_poc_default_datagroup
 # Each joined view also needs to define a primary key.
 
 explore: flights {
-  join: airports {
-    type: left_outer
-    sql_on: ${flights.origin_airport_id}=${airports.airport_id} ;;
-    relationship: many_to_one
-  }
+
   join:  flight_statistics_data{
     type: left_outer
     sql_on: ${flights.origin_airport_id}=${flight_statistics_data.origin_airport_id} ;;
