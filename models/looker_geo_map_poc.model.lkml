@@ -27,13 +27,15 @@ persist_with: looker_geo_map_poc_default_datagroup
 
 explore: flights {
 
-  join:  flight_statistics_data{
-    type: left_outer
-    sql_on: ${flights.origin_airport_id}=${flight_statistics_data.origin_airport_id} ;;
-    relationship: many_to_one
-  }
+
 }
 
 explore: airports {}
 
-explore: flight_statistics_data {}
+explore: flight_statistics_data {
+  join:  flights{
+    type: left_outer
+    sql_on: ${flight_statistics_data.origin_airport_id}=${flights.origin_airport_id} ;;
+    relationship: many_to_one
+  }
+}
